@@ -23,18 +23,27 @@ public class CommandReader {
         this.scanner = new Scanner(System.in);
     }
 
-    public Command readCommand(){
+    public Command readCommand() {
         try {
+            int commandNumber = Integer.parseInt(scanner.nextLine());
 
-            int commandNumber = Integer.getInteger(scanner.nextLine());
             Set<Command> commands = menu.getCommands();
-            return commands.stream()
+            Command selectedCommand = commands.stream()
                     .filter(command -> command.getRowNumber() == commandNumber)
-                    .findFirst().orElse(null);
+                    .findFirst()
+                    .orElse(null);
 
-        }catch (Exception e){
+            if (selectedCommand == null) {
+                System.out.println("Команда с таким номером не найдена.");
+                return null;
+            }
+
+            return selectedCommand;
+
+        } catch (NumberFormatException e) {
             System.out.println("Введите корректное число.");
-            throw new RuntimeException("Введено некорректное число");
+            return null;
         }
     }
+
 }

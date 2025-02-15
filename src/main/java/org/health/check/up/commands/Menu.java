@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Component
 public class Menu {
+
     private Set<Command> commands = new HashSet<>();
 
     public void addCommand(Command command) {
@@ -26,7 +27,7 @@ public class Menu {
         System.out.println("Меню");
         for (Command command : commands) {
             System.out.println(command.getRowNumber() + ". " + command.getName());
-            System.out.println("Введите порядковый номер команды");
         }
+        System.out.println("Введите порядковый номер команды");
     }
 }

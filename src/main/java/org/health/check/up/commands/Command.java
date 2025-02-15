@@ -5,16 +5,11 @@ import lombok.Setter;
 
 @Getter
 public abstract class Command {
-
     private static int counter = 0;
-
-    private int rowNumber;
+    private final int rowNumber;
 
     @Setter
     private String name;
-
-    public Command() {
-    }
 
     public Command(String name) {
         this.rowNumber = ++counter;
@@ -22,5 +17,4 @@ public abstract class Command {
     }
 
     public abstract void execute();
-
 }

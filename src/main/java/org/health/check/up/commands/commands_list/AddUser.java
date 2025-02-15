@@ -11,29 +11,26 @@ import java.util.Scanner;
 @Component
 public class AddUser extends Command {
 
-    UserService userService;
-    private final Scanner scanner = new Scanner(System.in);
+    private final UserService userService;
 
     @Autowired
-    public UserService getUserService() {
-        return userService;
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName("Новый пользователь");
+    public AddUser(UserService userService) {
+        super("Добавить пользователя");
+        this.userService = userService;
     }
 
     @Override
     public void execute() {
-        System.out.println("Введите email");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите email:");
         String email = scanner.nextLine();
 
-        System.out.println("Введите пароль");
+        System.out.println("Введите пароль:");
         String password = scanner.nextLine();
 
         User user = userService.createUser(email, password);
-
         System.out.println("Пользователь с email: " + user.getEmail() + " успешно создан");
     }
 }
+
